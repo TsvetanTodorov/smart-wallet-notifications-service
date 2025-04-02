@@ -2,7 +2,6 @@ package app.web;
 
 import app.model.Notification;
 import app.model.NotificationPreference;
-import app.model.NotificationStatus;
 import app.repository.NotificationRepository;
 import app.service.NotificationService;
 import app.web.dto.NotificationPreferenceResponse;
@@ -13,11 +12,7 @@ import app.web.mapper.DtoMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.mail.MailSender;
-import org.springframework.mail.SimpleMailMessage;
 import org.springframework.web.bind.annotation.*;
-
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -70,7 +65,7 @@ public class NotificationController {
                 .body(response);
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<List<NotificationResponse>> getNotificationHistory(@RequestParam(name = "userId") UUID userId){
 
         List<NotificationResponse> notificationHistory = notificationService.getNotificationHistory(userId)
